@@ -11,7 +11,7 @@ define('DB_HOST',    '127.0.0.1');
 define('DB_PORT',    '3306');
 define('DB_NAME',    'candle_leads');
 define('DB_USER',    'root');
-define('DB_PASS',    'PanidaKhoei-arsa09');          // Insert your MySQL password here (if any)
+define('DB_PASS',    '');          // Insert your MySQL password here (if any)
 define('DB_CHARSET', 'utf8mb4');
 
 /**

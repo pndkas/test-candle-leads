@@ -22,14 +22,16 @@ candle-leads/
 
 ## 🛠️ Prerequisites
 
-| Software | How to check | Download |
-|---------|------------|-----------|
-| **PHP 8.x** | `php -v` | https://windows.php.net/download (Choose VS17 x64 Thread Safe) |
-| **MySQL 8.x** | `mysql --version` | https://dev.mysql.com/downloads/mysql/ |
+| Software      | How to check      | Download                                                       |
+| ------------- | ----------------- | -------------------------------------------------------------- |
+| **PHP 8.x**   | `php -v`          | https://windows.php.net/download (Choose VS17 x64 Thread Safe) |
+| **MySQL 8.x** | `mysql --version` | https://dev.mysql.com/downloads/mysql/                         |
 
 > **Windows Note:**
+>
 > 1. After installing PHP, add the PHP path (e.g., `C:\php`) to your Environment Variable `PATH`.
 > 2. Check your `php.ini` file and ensure the following extensions are enabled (remove the `;` at the beginning of the line):
+>
 > ```ini
 > extension=pdo_mysql
 > extension=mbstring
@@ -85,7 +87,8 @@ CREATE TABLE IF NOT EXISTS leads (
 ```bash
 C:\php\php.exe -S localhost:8000
 ```
-*(If you have configured the PHP PATH in your environment variables, you can simply type `php -S localhost:8000`)*
+
+_(If you have configured the PHP PATH in your environment variables, you can simply type `php -S localhost:8000`)_
 
 ### Step 4 — Open in Browser
 
@@ -127,57 +130,19 @@ CREATE TABLE leads (
 ```
 
 **Why use `ENUM` for scent?**
+
 > It enforces data integrity at the database level. It ensures only allowed values are stored, acting as an ultimate safeguard against invalid data, even if PHP validation is bypassed.
 
 ---
 
 ## 🧪 How to Test
 
-| Scenario | Testing Method | Expected Result |
-|----------|----------|-------------|
-| JS validation | Click Submit without filling out the form | Real-time error messages appear below each invalid field. |
-| Email format | Enter an invalid email format like `abc` | Error message regarding invalid email format appears. |
-| PHP validation bypass | Send a direct POST request via Postman missing the `name` field | Receives HTTP 422 + JSON error response. |
-| Successful submission | Fill out all fields correctly and Submit | Success message is displayed, and a new row appears in the MySQL database. |
-| DB connection failure | Set incorrect password in `db.php` | Receives HTTP 500 + generic error message (stack trace is hidden for security). |
+| Scenario              | Testing Method                                                  | Expected Result                                                                 |
+| --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| JS validation         | Click Submit without filling out the form                       | Real-time error messages appear below each invalid field.                       |
+| Email format          | Enter an invalid email format like `abc`                        | Error message regarding invalid email format appears.                           |
+| PHP validation bypass | Send a direct POST request via Postman missing the `name` field | Receives HTTP 422 + JSON error response.                                        |
+| Successful submission | Fill out all fields correctly and Submit                        | Success message is displayed, and a new row appears in the MySQL database.      |
+| DB connection failure | Set incorrect password in `db.php`                              | Receives HTTP 500 + generic error message (stack trace is hidden for security). |
 
 ---
-
-## ✅ What Works
-
-- [x] Beautiful Landing Page (Dark Luxury Theme)
-- [x] Form fields: Name, Email, Scent (Interactive Card UI), Message (Optional)
-- [x] **JavaScript validation** (Real-time)
-- [x] **PHP validation** on the server-side (Prevents JS bypass)
-- [x] **SQL Injection protection** using PDO Prepared Statements + `ATTR_EMULATE_PREPARES => false`
-- [x] Saves data to MySQL database
-- [x] **AJAX submit** — No page reloads
-- [x] Responsive design (Mobile + Desktop)
-- [x] Auto-creates database and table on the first run
-
-## ❌ What to Improve Next
-
-- [ ] Add CSRF Token to prevent cross-site request forgery attacks
-- [ ] Implement Rate Limiting to limit submissions per IP
-- [ ] Check for email uniqueness before inserting
-- [ ] Create an Admin panel to view collected leads
-- [ ] Send automated email confirmations to subscribers
-- [ ] Move database credentials to a `.env` file
-
----
-
-## 🔒 .gitignore
-
-Files that should not be pushed to Git:
-
-```
-# Environment & credentials
-.env
-
-# Log files
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
-```

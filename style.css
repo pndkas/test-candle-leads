@@ -1,0 +1,422 @@
+/* ================================================================
+   style.css — Lumière Candle Co. (Minimal Light Theme)
+   Minimal light theme, elegant white-cream tone, suitable for interviews.
+   ================================================================ */
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ---- Design Tokens (Minimal Light Theme) ---- */
+:root {
+  --clr-bg:          #fbf9f6; /* Warm cream-white background */
+  --clr-surface:     #ffffff; /* Pure white card background */
+  --clr-surface-2:   #f5f2eb; /* Cream-white input background */
+  --clr-border:      #e4dfd5; /* Thin gray-cream border */
+  --clr-gold:        #a38053; /* Muted gold, polite and luxurious */
+  --clr-gold-light:  #bda179; 
+  --clr-gold-dim:    rgba(163, 128, 83, 0.06);
+  --clr-text:        #2d2926; /* Main text color, dark gray almost black */
+  --clr-text-muted:  #706b64; /* Secondary text color */
+  --clr-error:       #d32f2f; /* Red for error alerts */
+  --clr-error-bg:    #ffebee;
+  --clr-success:     #2e7d32; /* Green for success alerts */
+  --clr-success-bg:  #e8f5e9;
+
+  --ff-serif:  'Cormorant Garamond', Georgia, serif;
+  --ff-sans:   'Inter', system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  --shadow-card: 0 4px 20px rgba(163, 128, 83, 0.08);
+
+  --transition: 0.2s ease-in-out;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ================================================================
+   HERO SECTION
+   ================================================================ */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px 30px;
+}
+
+/* Hide floating particles for simplicity */
+.particles {
+  display: none !important;
+}
+
+.brand-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.brand-tagline {
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--clr-text);
+  margin-bottom: 16px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--clr-gold);
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--clr-gold);
+  font-size: 0.9rem;
+  margin: 32px 0 16px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  width: 60px;
+  height: 1px;
+  background: var(--clr-border);
+}
+
+/* ================================================================
+   FORM CARD
+   ================================================================ */
+.form-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 40px);
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 60px;
+  box-shadow: var(--shadow-card);
+}
+
+.form-title {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--clr-text);
+}
+
+.form-subtitle {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 24px;
+}
+
+/* ---- Form Groups ---- */
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--clr-gold);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.required-star {
+  color: var(--clr-error);
+  margin-left: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  color: var(--clr-text);
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--clr-gold);
+  box-shadow: 0 0 0 3px rgba(163, 128, 83, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b0aaa0;
+}
+
+/* Valid / Invalid states */
+input.is-valid,
+textarea.is-valid {
+  border-color: var(--clr-success);
+}
+
+input.is-invalid,
+textarea.is-invalid {
+  border-color: var(--clr-error);
+}
+
+.field-error {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--clr-error);
+  margin-top: 4px;
+  min-height: 1.1em;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ---- Scent Cards (Minimal, clean) ---- */
+.scent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.scent-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 12px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  user-select: none;
+  outline: none;
+}
+
+.scent-card:hover {
+  border-color: var(--clr-gold);
+  background: var(--clr-gold-dim);
+}
+
+.scent-card.selected {
+  border-color: var(--clr-gold);
+  background: var(--clr-gold-dim);
+}
+
+.scent-emoji { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+.scent-name  { font-size: 0.7rem; color: var(--clr-text-muted); font-weight: 500; }
+
+.scent-card.selected .scent-name {
+  color: var(--clr-gold);
+  font-weight: 600;
+}
+
+/* Hidden input for scent */
+#scent { display: none; }
+
+/* ---- Submit Button ---- */
+.btn-submit {
+  width: 100%;
+  padding: 12px 24px;
+  background: var(--clr-gold);
+  color: #ffffff;
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition);
+  margin-top: 8px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: var(--clr-gold-light);
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Alert Box ---- */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  border: 1px solid;
+  text-align: left;
+}
+
+.alert-error {
+  background: var(--clr-error-bg);
+  border-color: rgba(211, 47, 47, 0.2);
+  color: var(--clr-error);
+}
+
+.alert-success {
+  background: var(--clr-success-bg);
+  border-color: rgba(46, 125, 50, 0.2);
+  color: var(--clr-success);
+}
+
+/* ================================================================
+   SUCCESS VIEW
+   ================================================================ */
+.success-view {
+  text-align: center;
+  padding: 30px 16px;
+  max-width: 400px;
+  margin: 0 auto 60px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.success-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-family: var(--ff-serif);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--clr-gold);
+  margin-bottom: 8px;
+}
+
+.success-text {
+  color: var(--clr-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ================================================================
+   FEATURES STRIP
+   ================================================================ */
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 30px 24px;
+  border-top: 1px solid var(--clr-border);
+  border-bottom: 1px solid var(--clr-border);
+  margin-bottom: 40px;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+  text-align: center;
+  min-width: 100px;
+}
+
+.feature-item span:first-child { font-size: 1.4rem; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.75rem;
+  color: var(--clr-text-muted);
+  border-top: 1px solid var(--clr-border);
+}
+
+/* ================================================================
+   UTILITIES & ANIMATION
+   ================================================================ */
+.hidden { display: none !important; }
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 520px) {
+  .form-card { margin: 0 16px 40px; }
+  .scent-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero { padding: 40px 16px 20px; }
+}
